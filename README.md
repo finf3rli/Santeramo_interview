@@ -21,19 +21,19 @@ here follows all the decisions i've taken during the development of this REST AP
 
 ## Functions additional info
 
-### create_cart(data: CartRequest) -> /cart
+**create_cart(data: CartRequest) -> /cart**
 
 Simply returns a cart by creating a uuid4. This is how we get to use the cart.
 
-### get_cart(cart_id: str) -> /cart/{cart_id}, response_model = CartView
+**get_cart(cart_id: str) -> /cart/{cart_id}, response_model = CartView**
 
 Given a uuid4 it returns the item list of the chosen cart. It has a response_model in order to accomplish what the specifics say about the cart view. Error 404 if no cart has been found. Setting unit price based on customer's role.
 
-### add_products(cart_id: str, product_list: ProductList) -> /shop/add
+**add_products(cart_id: str, product_list: ProductList) -> /shop/add**
 
 Receives a list of products and adds to them to the chosen cart. Validates quantity input(quantity > 0) else error 400. It searches for already existing items in the cart in case the customer adds articles in more than 1 operations, then adds up to the quantity: else, append to list. Defined models to accept data and a Enum to manage product category. Changes cart status to BUILDING.
 
-### checkout(cart_id: str, friday: bool | None = Query(default=None, description="Is it Friday?")) -> /cart/checkout/{cart_id}
+**checkout(cart_id: str, friday: bool | None = Query(default=None, description="Is it Friday?")) -> /cart/checkout/{cart_id}**
 
 Manipulates final total price. For testing purposes i added a optional field to set the day as friday for the "one-shot" policy. Once obtained the cart, the function checks what is the customer's role to set the unit price, then proceeds with the discount policies evaluation in this order:
 
