@@ -1,0 +1,61 @@
+**Note: set customer role when building cart**
+
+- 1: No discount(customer: 1) expected: 500.00
+
+    {
+      "product_sku": "SKU001",
+      "product_name": "Product A",
+      "product_category": 1,
+      "quantity": 5
+    }
+
+- 2: Quantity discount(customer: 2, quantity > 25) expected: 2160.00
+
+    {
+      "product_sku": "SKU002",
+      "product_name": "Product B",
+      "product_category": 2,
+      "quantity": 30
+    }
+
+- 3: One-Shot only(customer: not important, set friday to true) expected: 250.00
+
+    {
+      "product_sku": "FR-1234",
+      "product_name": "Product C",
+      "product_category": 1,
+      "quantity": 10
+    }
+
+- 4: Quantity discount + Gift(customer: 2) expected: 912.00
+
+    {
+      "product_sku": "SKU003",
+      "product_name": "Product D",
+      "product_category": 3,
+      "quantity": 15
+    }
+
+- 5: Quantity discount + One-Shot(customer: 1, set friday to true) expected: 3950.00
+
+    {
+      "product_sku": "FR-1234",
+      "product_name": "Product E",
+      "product_category": 1,
+      "quantity": 50
+    },
+    {
+      "product_sku": "SKU004",
+      "product_name": "Product F",
+      "product_category": 2,
+      "quantity": 30
+    }
+
+- 6: Gift only(customer: 1) expected: 400.00
+
+    {
+      "product_sku": "SKU006",
+      "product_name": "Product H",
+      "product_category": 3,
+      "quantity": 5
+    }
